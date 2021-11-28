@@ -1,0 +1,27 @@
+<launch>
+	<arg
+        	name="frequency"
+	        default = "10"
+	/>
+	<arg
+	        name="run_rosbag"
+	        default = "false"
+	/>
+	<include file="$(find turtlebot3_gazebo)/launch/turtlebot3_world.launch">
+	</include>
+	<node
+		pkg = "turtlebot_obstacle"
+		name = "move"
+		type = "move"
+		output = "screen"
+		launch-prefix="gnome-terminal --command"
+	/>
+	<node
+		pkg="rosbag"
+		name="record"
+		type="record"
+		args="--duration=30 --all --output-name=$(find turtlebot_obstacle)/results/RosBag.bag -x /camera/(.*)"
+		if="$(arg run_rosbag)"
+	/>
+	
+</launch>
