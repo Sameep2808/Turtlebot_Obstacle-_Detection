@@ -20,7 +20,7 @@
 		pkg="rosbag"
 		name="record"
 		type="record"
-		args="--duration=15 --all --output-name=$(find turtlebot_obstacle)/Results/listenerRosBag.bag"
+		args="--duration=30 --all --output-name=$(find turtlebot_obstacle)/results/RosBag.bag -x /camera/(.*)"
 		if="$(arg run_rosbag)"
 	/>
 	

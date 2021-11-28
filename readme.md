@@ -104,7 +104,7 @@ In your Eclipse workspace directory (or create a new one), checkout the repo (an
 ```
 mkdir -p ~/workspace
 cd ~/workspace
-git clone --recursive https://github.com/Sameep2808/beginner_tutorials.git
+git clone --recursive https://github.com/Sameep2808/Turtlebot_Obstacle-_Detection
 ```
 
 In your work directory, use cmake to create an Eclipse project for an [out-of-source build] of cpp-boilerplate
