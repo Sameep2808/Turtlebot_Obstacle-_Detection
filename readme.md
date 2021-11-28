@@ -8,7 +8,7 @@ ROS Packager for consisting of publisher and subscriber node for a custom string
 ## Standard install via command-line
 ```
 cd /home/user/catkin_ws/src
-git clone --recursive https://github.com/Sameep2808/beginner_tutorials.git
+git clone --recursive https://github.com/Sameep2808/Turtlebot_Obstacle-_Detection
 cd ..
 catkin_make clean && catkin_make
 ```
@@ -47,9 +47,9 @@ cd ~/catkin_ws
 source ./devel/setup.bash
 ```
 
-To Run the Publisher Node
+To Run the Move Node
 ```
-rosrun beginner_tutorials talker 
+rosrun turtlebot_obstacle move 
 ```
 
 To Run the listener Node
@@ -65,46 +65,21 @@ rosservice call changeString "<any new string the user wants to enter>"
 # Run Using the launch file
 We can directly use our new launch file
 ```
-roslaunch beginner_tutorials changeString.launch frequency:=<integer value for frequency loop>
+roslaunch turtlebot_obstacle turtleobs.launch frequency:=<integer value for frequency loop>
 ```
 The frequency parameter is optional.
 
-To call the service.(Open a new terminal)
-```
-rosservice call changeString "<any new string the user wants to enter>"
-```
 
-# Inspecting  TF frames
-```
-roslaunch beginner_tutorials changeString.launch
-```
-In a new Terminal window
-```
-rosrun tf2_tools view_frames.py
-evince frames.pdf
-```
-Using rqt_tf_tree
-```
-rosrun rqt_tf_tree rqt_tf_tree
-```
-Using tf_echo
-```
-rosrun tf tf_echo world talk
-```
 
-# Running ros test
-```
-catkin_make run_tests_beginner_tutorials
-```
 
 # Recording bag files with the launch file
 ```
-roslaunch beginner_tutorials changeString.launch frequency:=<integer value for frequency loop> run_rosbag:=true
+roslaunch turtlebot_obstacle turtleobs.launch frequency:=<integer value for frequency loop> run_rosbag:=true
 ```
 
 # Disable bag file recording
 ```
-roslaunch beginner_tutorials changeString.launch frequency:=<integer value for frequency loop> run_rosbag:=false
+roslaunch turtlebot_obstacle turtleobs.launch frequency:=<integer value for frequency loop> run_rosbag:=false
 ```
 
 # Inspecting the bag file and playing back the bag file with the Listener node demonstration
@@ -114,7 +89,7 @@ roscore
 ```
 Run the listener Node (Another terminal) 
 ```
-rosrun beginner_tutorials listener
+roslaunch turtlebot3_gazebo turtlebot3_world.launch
 ```
 Run the bag file
 ```
