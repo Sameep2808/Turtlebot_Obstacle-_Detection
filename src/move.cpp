@@ -12,34 +12,32 @@
 #include "sensor_msgs/LaserScan.h"
 
 ros::Publisher pub;
-void chatterCallback(const sensor_msgs::LaserScan::ConstPtr& data) {
-	geometry_msgs::Twist pos;
-	
-	for(int i=0;i<60;i++)
-	{	
-		if(data -> ranges[i]<=0.4){
-		ROS_INFO("Object Detected left");
-		pos.linear.x = -0.20;
-		pos.angular.z = -2;
-		}
-		else if(data -> ranges[i+300]<=0.4){
-		ROS_INFO("Object Detected right");
-		pos.linear.x = -0.20;
-		pos.angular.z = 2;}
-		else{
-		ROS_INFO("Move");
-		pos.linear.x = 0.2;
-		pos.angular.z = 0.0;}
-	}
-	pub.publish(pos);
+void chatterCallback(const sensor_msgs::LaserScan::ConstPtr &data) {
+  geometry_msgs::Twist pos;
 
+  for (int i = 0; i < 60; i++) {
+    if (data->ranges[i] <= 0.4) {
+      ROS_INFO("Object Detected left");
+      pos.linear.x = -0.20;
+      pos.angular.z = -2;
+    } else if (data->ranges[i + 300] <= 0.4) {
+      ROS_INFO("Object Detected right");
+      pos.linear.x = -0.20;
+      pos.angular.z = 2;
+    } else {
+      ROS_INFO("Move");
+      pos.linear.x = 0.2;
+      pos.angular.z = 0.0;
+    }
+  }
+  pub.publish(pos);
 }
 
 int main(int argc, char **argv) {
   ros::init(argc, argv, "move");
-  
+
   ros::NodeHandle n;
-  pub = n.advertise<geometry_msgs::Twist>("/cmd_vel",1);
+  pub = n.advertise<geometry_msgs::Twist>("/cmd_vel", 1);
   ros::Subscriber sub = n.subscribe("/scan", 1, chatterCallback);
   ros::Rate loop_rate(10);
   ros::spin();
